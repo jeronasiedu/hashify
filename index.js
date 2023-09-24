@@ -12,7 +12,9 @@ const upload = multer({ storage })
 
 app.get("/", (_, res) => {
   return res.json({
-    message: "We're working on it!",
+    message:
+      "Hey, visit `/generate-blurhash` or `/generate-blurhash-from-file` to generate a blurhash",
+    date: new Date().toLocaleDateString(),
   })
 })
 
