@@ -11,12 +11,8 @@ app.use(express.static("public"))
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
-app.get("/", (_, res) => {
-  return res.json({
-    message:
-      "Hey, make a post request to `/generate-blurhash` or `/generate-blurhash-from-file` to generate a blurhash",
-    date: new Date().toLocaleDateString(),
-  })
+app.get("/", (req, res) => {
+  return res.sendFile("/public/hashify.html")
 })
 
 app.post("/generate-blurhash", async (req, res) => {
