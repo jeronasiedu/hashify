@@ -12,7 +12,7 @@ export const encodeImageToBlurhash = (image, isBuffer = false) =>
         if (!response.ok) {
           return reject(new Error("Failed to fetch the image"))
         }
-        buffer = await response.buffer()
+        buffer = await response.arrayBuffer()
       }
       sharp(buffer)
         .raw()
