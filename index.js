@@ -26,7 +26,7 @@ app.post("/generate-blurhash", async (req, res) => {
       return res.status(400).json({
         error: "imageUrl is required in the request body",
         recommendation:
-          "Please provide an image url or use the /generate-blurhash-from-file endpoint",
+          "Please provide an image url or use the /generate-blurhash-from-file endpoint with an image file",
       })
     }
     const blurHash = await encodeImageToBlurhash(imageUrl)
@@ -45,7 +45,8 @@ app.post("/generate-blurhash-from-file", upload.single("image"), async (req, res
     if (!req.file.mimetype.includes("image")) {
       return res.status(400).json({
         error: "File must be an image",
-        recommendation: "Please provide an image url or use the /generate-blurhash endpoint",
+        recommendation:
+          "Please provide an image file or use the /generate-blurhash endpoint with an image url",
       })
     }
 
