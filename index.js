@@ -33,14 +33,18 @@ app.post("/generate-blurhash", async (req, res) => {
     res.json({ blurHash })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ error: "An internal server error occurred" })
+    res.status(500).json({ error: "An internal server error occurred", reason: error?.message })
   }
 })
 
 app.post("/generate-blurhash-from-file", upload.single("image"), async (req, res) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" })
+      return res.status(400).json({
+        error: "No file uploaded",
+        recommendation:
+          "Please provide an image file or use the /generate-blurhash endpoint with an image url",
+      })
     }
     if (!req.file.mimetype.includes("image")) {
       return res.status(400).json({
@@ -55,7 +59,7 @@ app.post("/generate-blurhash-from-file", upload.single("image"), async (req, res
     res.json({ blurHash })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ error: "An internal server error occurred" })
+    res.status(500).json({ error: "An internal server error occurred", reason: error?.message })
   }
 })
 
