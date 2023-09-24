@@ -6,6 +6,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
+app.use(express.static("public"))
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
