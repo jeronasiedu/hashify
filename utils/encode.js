@@ -1,19 +1,9 @@
 import { encode } from "blurhash"
 import sharp from "sharp"
 
-export const encodeImageToBlurhash = (image, isBuffer = false) =>
+export const convertBufferToBlurHash = (buffer) =>
   new Promise(async (resolve, reject) => {
     try {
-      let buffer
-      if (isBuffer) {
-        buffer = image
-      } else {
-        const response = await fetch(image)
-        if (!response.ok) {
-          return reject(new Error("Failed to fetch the image"))
-        }
-        buffer = await response.arrayBuffer()
-      }
       sharp(buffer)
         .raw()
         .ensureAlpha()

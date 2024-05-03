@@ -13,6 +13,7 @@
     "blurhash": "^2.0.5",
     "express": "^4.18.2",
     "multer": "^1.4.5-lts.1",
+    "plaiceholder": "^3.0.0",
     "sharp": "^0.32.6"
   }
 }
